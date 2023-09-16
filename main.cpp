@@ -2,7 +2,7 @@
 
 
 
-// Упрощённая структура, реализующая элемент односвязного списка.
+// A simplified structure that implements an element of a singly linked list.
 struct ListNode {
 	int val;
 	ListNode* next;
@@ -10,7 +10,7 @@ struct ListNode {
 
 
 
-// Функция, переворачивающая односвязный список.
+// A function that flips a singly linked list.
 ListNode* ReverseFList(ListNode* head)
 {
 	ListNode* cur;
@@ -20,12 +20,12 @@ ListNode* ReverseFList(ListNode* head)
 	cur = head;
 	next = cur->next;
 
-	// Работаем с первым элементом отдельно.
+	// Working with the first element separately.
 	cur->next = nullptr;
 	cur = next;
 	prev = head;
 	
-	// Основной цикл.
+	// The main cycle.
 	while (cur->next != nullptr) {
 		next = cur->next;
 		cur->next = prev;
@@ -33,12 +33,12 @@ ListNode* ReverseFList(ListNode* head)
 		cur = next;
 	}
 
-	// Работаем с последним элементом отдельно.
+	// Working with the last element separately.
 	cur->next = prev;
 	prev = cur;
 	head = cur;
 
-	// Возвращаем указатель на новое начало списка.
+	// Return the pointer to the new beginning of the list.
 	return(head);
 }
 
@@ -49,7 +49,7 @@ int main() {
 	ListNode LN[5];
 	ListNode* head = &LN[0];
 
-	// Инициализируем односвязный список.
+	// Initialize a singly linked list.
 	for (int i = 0; i != 4; ++i) {
 		LN[i].val = i * i;
 		LN[i].next = &LN[i + 1];
@@ -57,16 +57,16 @@ int main() {
 	LN[4].val = 4 * 4;
 	LN[4].next = nullptr;
 
-	// Выводим значения его полей val в заданном при инициализации порядке. 
+	// Output the values of its val fields in the order specified during initialization.
 	for (ListNode* cur = head; cur != nullptr; cur = cur->next) {
 		std::cout << cur->val << " ";
 	}
 	std::cout << std::endl;
 
-	// Запускаем функцию "переворачивания".
+	// Start the "flip" function.
 	head = ReverseFList(head);
 
-	// Выводим значения его полей val в порядке после "разворота".
+	// We output the values of its val fields in the order after the "reversal".
 	for (ListNode* cur = head; cur != nullptr; cur = cur->next) {
 		std::cout << cur->val << " ";
 	}
